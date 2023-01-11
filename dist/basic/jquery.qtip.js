@@ -1,15 +1,13 @@
 /*
- * qTip2 - Pretty powerful tooltips - v3.0.3
+ * qTip2 - Pretty powerful tooltips - @@vVERSION
  * http://qtip2.com
  *
- * Copyright (c) 2016 
+ * Copyright (c) 2023 
  * Released under the MIT licenses
  * http://jquery.org/license
  *
- * Date: Wed May 11 2016 10:31 GMT+0100+0100
- * Plugins: None
- * Styles: core
- */
+ * Date: Wed Jan 11 2023 03:10 GMT+0100+0100
+@@BUILDPROPS */
 /*global window: false, jQuery: false, console: false, define: false */
 
 /* Cache window, document, undefined */
@@ -20,6 +18,9 @@
 	"use strict";
 	if(typeof define === 'function' && define.amd) {
 		define(['jquery'], factory);
+	}
+	else if(typeof module === 'object' && typeof module.exports === 'object') {
+		module.exports = factory(require('jquery'));
 	}
 	else if(jQuery && !jQuery.fn.qtip) {
 		factory(jQuery);
@@ -1775,7 +1776,7 @@ function init(elem, id, opts) {
 
 	// Remove title attribute and store it if present
 	if(config.suppress && (title = elem.attr('title'))) {
-		// Final attr call fixes event delegatiom and IE default tooltip showing problem
+		// Final attr call fixes event delegation and IE default tooltip showing problem
 		elem.removeAttr('title').attr(oldtitle, title).attr('title', '');
 	}
 
@@ -1931,7 +1932,7 @@ if(!$.ui) {
 	};
 }
 ;// qTip version
-QTIP.version = '3.0.3';
+QTIP.version = '@@VERSION';
 
 // Base ID for all qTips
 QTIP.nextid = 0;
@@ -2012,5 +2013,6 @@ QTIP.defaults = {
 		blur: NULL
 	}
 };
-;}));
+;return $.qtip;
+}));
 }( window, document ));
